@@ -5,6 +5,7 @@ import { Footer } from '@/components/Footer'
 import { FlagBackground } from '@/components/FlagBackground'
 import { SkeletonImage } from '@/components/SkeletonImage'
 import { TransitionLink } from '@/components/TransitionLink'
+import { Timeline } from '@/components/Timeline'
 import { ArrowRight, Chat, Chevron } from '@/components/Icons'
 import { FUERZAS, SITE } from '@/config'
 import { WA_INFO } from '@/lib/whatsapp'
@@ -103,28 +104,21 @@ export function HomePage() {
               <li><span className="display">2</span>DNI</li>
             </ul>
             <p className="muted">
-              La cuota no puede superar lo que tenés disponible en tu recibo de haberes (hasta el 30% según la
-              normativa vigente). Si no sabés cuánto es, lo calculamos con vos.
+              La cuota no puede superar lo que tenés disponible en tu recibo de haberes*
             </p>
           </div>
         </section>
 
-        <section id="como-funciona" className="section">
-          <div className="section__head">
-            <h2 className="display h2">Cómo funciona</h2>
-            <p className="lead">
-              Cuatro pasos. Te acompañamos en cada uno.
-            </p>
+        <section id="como-funciona" className="howto" data-pin>
+          <div className="howto__sticky section">
+            <div className="section__head">
+              <h2 className="display h2">Cómo funciona</h2>
+              <p className="lead">
+                Cuatro pasos. Te acompañamos en cada uno.
+              </p>
+            </div>
+            <Timeline pasos={PASOS} />
           </div>
-          <ol className="steps">
-            {PASOS.map((p, i) => (
-              <li key={p.titulo} className="step" data-reveal style={stagger(i, 110)}>
-                <span className="display step__num">{i + 1}</span>
-                <h3 className="step__title">{p.titulo}</h3>
-                <p className="step__text">{p.texto}</p>
-              </li>
-            ))}
-          </ol>
         </section>
 
         <section id="simulador" className="band">

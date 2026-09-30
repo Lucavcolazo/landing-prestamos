@@ -1,16 +1,11 @@
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
+import { NAV_LINKS } from '@/lib/nav'
 import { WA_INFO } from '@/lib/whatsapp'
 import { Chat, Close, Menu } from './Icons'
 import { TransitionLink } from './TransitionLink'
 
-const LINKS = [
-  { to: '/', label: 'Inicio', section: 'inicio' },
-  { to: '/#como-funciona', label: 'Cómo funciona', section: 'como-funciona' },
-  { to: '/#preguntas', label: 'Preguntas', section: 'preguntas' },
-  { to: '/#sobre-mi', label: 'Sobre mí', section: 'sobre-mi' },
-  { to: '/calculo', label: 'Simulador', section: null },
-]
+const LINKS = NAV_LINKS
 
 const SECCIONES = LINKS.map((l) => l.section).filter((s): s is string => !!s)
 
