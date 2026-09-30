@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { TransitionLink } from '@/components/TransitionLink'
-import { ArrowLeft, Chat, Chevron } from '@/components/Icons'
+import { ArrowLeft, WhatsApp, Chevron } from '@/components/Icons'
 import { CALC } from '@/config'
 import { simular } from '@/lib/finance'
 import { formatMontoInput, money, parseMonto } from '@/lib/format'
@@ -183,7 +183,7 @@ export function CalculoPage() {
 
             <div className="field-group">
               <label className="lbl" htmlFor="nombre">
-                Tu nombre <span className="opt">(opcional)</span>
+                Tu nombre <span className="opt"></span>
               </label>
               <input
                 id="nombre"
@@ -197,8 +197,8 @@ export function CalculoPage() {
             </div>
           </form>
 
-          <aside className="result enter" style={stagger(4, 90)} aria-live="polite">
-            <div className="result__main">
+          <aside className="result enter" style={stagger(4, 90)} aria-label="Resultado de la simulación">
+            <div className="result__main" aria-live="polite" aria-atomic="true">
               <span className="result__label">Te queda en mano</span>
               <span key={listo ? Math.round(sim.enMano) : 0} className="display result__big num-pop">{listo ? money(sim.enMano) : dash}</span>
               {!listo && (
@@ -224,7 +224,7 @@ export function CalculoPage() {
 
             <div className="result__send">
               <a href={waLink(mensaje)} className="btn btn--white btn--lg btn--block" target="_blank" rel="noopener noreferrer">
-                <Chat size={24} /> Enviar simulación por WhatsApp
+                <WhatsApp size={24} /> Enviar simulación por WhatsApp
               </a>
               <span className="result__note">
                 Se abre WhatsApp con el resumen listo. No se envía nada hasta que vos lo confirmes.

@@ -6,7 +6,7 @@ import { SkeletonImage } from '@/components/SkeletonImage'
 import { TransitionLink } from '@/components/TransitionLink'
 import { Timeline } from '@/components/Timeline'
 import { MapaCobertura } from '@/components/MapaCobertura'
-import { ArrowRight, Chat, Chevron } from '@/components/Icons'
+import { ArrowRight, WhatsApp, Chevron } from '@/components/Icons'
 import { FUERZAS, SITE } from '@/config'
 import { WA_INFO } from '@/lib/whatsapp'
 import { stagger, useReveal } from '@/lib/useReveal'
@@ -64,7 +64,7 @@ export function HomePage() {
                 Simular mi préstamo <ArrowRight />
               </TransitionLink>
               <a href={WA_INFO} className="btn btn--ghost" target="_blank" rel="noopener noreferrer">
-                <Chat /> Consultar por WhatsApp
+                <WhatsApp /> Consultar por WhatsApp
               </a>
             </div>
           </div>
@@ -144,7 +144,7 @@ export function HomePage() {
             <h2 className="display h2">Donde estés, te puedo asesorar</h2>
             <div className="perfil">
               {SITE.foto ? (
-                <SkeletonImage className="perfil__foto" src={SITE.foto} alt={SITE.nombre} width={112} height={112} />
+                <SkeletonImage className="perfil__foto" src={SITE.foto} alt={SITE.nombre} width={112} height={112} loading="lazy" decoding="async" />
               ) : (
                 <span className="perfil__foto perfil__foto--iniciales" aria-hidden="true">
                   {SITE.nombre.split(' ').map((p) => p[0]).slice(0, 2).join('')}
@@ -162,19 +162,14 @@ export function HomePage() {
             </p>
             <div>
               <a href={WA_INFO} className="btn btn--white" target="_blank" rel="noopener noreferrer">
-                <Chat /> Hablar con Diego
+                <WhatsApp /> Hablar con Diego
               </a>
             </div>
           </div>
         </section>
 
         <section id="preguntas" className="section faq-layout">
-          <div className="stack">
-            <h2 className="display h2">Preguntas frecuentes</h2>
-            <p className="muted-lg">
-              Si no encontrás lo que buscás, <a href={WA_INFO} target="_blank" rel="noopener noreferrer">escribime por WhatsApp</a>.
-            </p>
-          </div>
+          <h2 className="display h2 faq-layout__title">Preguntas frecuentes</h2>
           <div className="faq">
             {PREGUNTAS.map((item, i) => {
               const open = abierta === i

@@ -6,36 +6,60 @@ const SLICES = 37
  * Fondo del hero: video de la bandera en loop (public/video/bandera.webm / .mp4).
  * El poster se muestra al instante mientras carga el video; si el video no se puede
  * reproducir, queda una bandera animada en CSS.
- * Al hacer scroll se difumina para que el contenido se lea mejor.
+ * Al hacer scroll se difumina para que el contenido se lea mejor. En pantallas chicas solo
+ * baja la opacidad (el blur sobre video es costoso en celulares de gama baja).
+ * El video se pausa cuando el hero sale de pantalla.
  */
 export function FlagBackground() {
   const wrapRef = useRef<HTMLDivElement>(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
   const [videoFailed, setVideoFailed] = useState(false)
   const [reduceMotion] = useState(
     () => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches,
   )
 
+  // Difuminado con el scroll
   useEffect(() => {
     const el = wrapRef.current
     if (!el) return
+    const conBlur = window.matchMedia('(min-width: 761px) and (pointer: fine)')
     let frame = 0
+    let idle = 0
     const update = () => {
       frame = 0
       const h = el.parentElement?.offsetHeight || window.innerHeight
       const p = Math.min(1, Math.max(0, window.scrollY / (h * 0.8)))
       el.style.opacity = String(1 - 0.75 * p)
-      el.style.filter = p > 0 ? `blur(${(8 * p).toFixed(2)}px)` : ''
+      el.style.filter = conBlur.matches && p > 0 ? `blur(${(8 * p).toFixed(2)}px)` : ''
     }
     const onScroll = () => {
+      // `will-change` solo mientras hay scroll, no en reposo
+      el.style.willChange = 'opacity, filter'
+      window.clearTimeout(idle)
+      idle = window.setTimeout(() => (el.style.willChange = ''), 200)
       if (!frame) frame = requestAnimationFrame(update)
     }
     update()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => {
       window.removeEventListener('scroll', onScroll)
+      window.clearTimeout(idle)
       if (frame) cancelAnimationFrame(frame)
     }
   }, [])
+
+  // Pausar el video fuera de pantalla
+  useEffect(() => {
+    const el = wrapRef.current
+    const video = videoRef.current
+    if (!el || !video || reduceMotion || !('IntersectionObserver' in window)) return
+    const obs = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) video.play().catch(() => {})
+      else video.pause()
+    })
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [reduceMotion, videoFailed])
 
   return (
     <div className="flag" ref={wrapRef} aria-hidden="true">
@@ -54,6 +78,7 @@ export function FlagBackground() {
         </div>
       ) : (
         <video
+          ref={videoRef}
           className="flag__video"
           autoPlay={!reduceMotion}
           muted

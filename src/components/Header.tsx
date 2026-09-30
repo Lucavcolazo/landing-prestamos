@@ -1,9 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { NAV_LINKS } from '@/lib/nav'
 import { WA_INFO } from '@/lib/whatsapp'
-import { Chat, Close, Menu } from './Icons'
+import { WhatsApp, Close, Menu } from './Icons'
 import { TransitionLink } from './TransitionLink'
+import { LogoMark } from './Logo'
+import { SITE } from '@/config'
 
 const LINKS = NAV_LINKS
 
@@ -47,6 +49,8 @@ export function Header({ overHero = false }: { overHero?: boolean }) {
   const { pathname } = useLocation()
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const headerRef = useRef<HTMLElement>(null)
+  const toggleRef = useRef<HTMLButtonElement>(null)
   const enHome = pathname === '/'
   const seccion = useSeccionActiva(enHome)
 
@@ -60,22 +64,52 @@ export function Header({ overHero = false }: { overHero?: boolean }) {
 
   useEffect(() => setOpen(false), [pathname])
 
+  // Con el menú abierto: Escape o un click fuera del header lo cierran
+  useEffect(() => {
+    if (!open) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setOpen(false)
+        toggleRef.current?.focus()
+      }
+    }
+    const onPointer = (e: PointerEvent) => {
+      if (!headerRef.current?.contains(e.target as Node)) setOpen(false)
+    }
+    document.addEventListener('keydown', onKey)
+    document.addEventListener('pointerdown', onPointer)
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.removeEventListener('pointerdown', onPointer)
+    }
+  }, [open])
+
   const solid = !overHero || scrolled || open
   const esActual = (l: (typeof LINKS)[number]) => (l.section ? enHome && seccion === l.section : pathname === l.to)
 
   const cta =
     pathname === '/calculo' ? (
       <a href={WA_INFO} className="btn btn--white btn--sm" target="_blank" rel="noopener noreferrer">
-        <Chat size={20} /> Consultar
+        <WhatsApp size={20} /> Consultar
       </a>
     ) : (
       <TransitionLink to="/calculo" className="btn btn--white btn--sm">Simular préstamo</TransitionLink>
     )
 
   return (
-    <header className={`site-header${solid ? ' is-solid' : ''}${open ? ' is-open' : ''}`}>
+    <header ref={headerRef} className={`site-header${solid ? ' is-solid' : ''}${open ? ' is-open' : ''}`}>
       <div className="site-header__bar">
+        <TransitionLink to="/" className="brand" aria-label={`${SITE.nombre}, inicio`}>
+          <LogoMark className="brand__mark" />
+          <span className="display brand__name" aria-hidden="true">
+            {SITE.nombre.split(' ').map((parte) => (
+              <span key={parte}>{parte}</span>
+            ))}
+          </span>
+        </TransitionLink>
+
         <button
+          ref={toggleRef}
           type="button"
           className="nav-toggle"
           aria-expanded={open}

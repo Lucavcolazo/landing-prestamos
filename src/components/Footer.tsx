@@ -1,7 +1,7 @@
 import { SITE } from '@/config'
 import { NAV_LINKS } from '@/lib/nav'
 import { WA_INFO } from '@/lib/whatsapp'
-import { Chat } from './Icons'
+import { WhatsApp } from './Icons'
 import { TransitionLink } from './TransitionLink'
 
 export function Footer() {
@@ -12,7 +12,7 @@ export function Footer() {
           <p className="display site-footer__title">¿Te quedó alguna duda?</p>
           <p className="site-footer__text">Escribime por WhatsApp y lo vemos juntos, sin compromiso.</p>
           <a href={WA_INFO} className="btn btn--white" target="_blank" rel="noopener noreferrer">
-            <Chat /> Escribir por WhatsApp
+            <WhatsApp /> Escribir por WhatsApp
           </a>
         </div>
 
