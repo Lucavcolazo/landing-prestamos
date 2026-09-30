@@ -9,7 +9,7 @@ export interface NavLink {
 export const NAV_LINKS: NavLink[] = [
   { to: '/', label: 'Inicio', section: 'inicio' },
   { to: '/#como-funciona', label: 'Cómo funciona', section: 'como-funciona' },
-  { to: '/#preguntas', label: 'Preguntas', section: 'preguntas' },
   { to: '/#sobre-mi', label: 'Sobre mí', section: 'sobre-mi' },
+  { to: '/#preguntas', label: 'Preguntas', section: 'preguntas' },
   { to: '/calculo', label: 'Simulador', section: null },
 ]

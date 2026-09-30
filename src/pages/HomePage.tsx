@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { FlagBackground } from '@/components/FlagBackground'
 import { SkeletonImage } from '@/components/SkeletonImage'
 import { TransitionLink } from '@/components/TransitionLink'
 import { Timeline } from '@/components/Timeline'
+import { MapaCobertura } from '@/components/MapaCobertura'
 import { ArrowRight, Chat, Chevron } from '@/components/Icons'
 import { FUERZAS, SITE } from '@/config'
 import { WA_INFO } from '@/lib/whatsapp'
@@ -124,14 +124,47 @@ export function HomePage() {
         <section id="simulador" className="band">
           <div className="stack">
             <h2 className="display h2">¿Cuánto pagarías por mes?</h2>
-            <p className="lead lead--light">
+            <p className="lead">
               Probá distintos montos y plazos en el simulador. Es gratis y no te compromete a nada.
             </p>
           </div>
           <div className="band__cta">
-            <TransitionLink to="/calculo" className="btn btn--white btn--lg">
+            <TransitionLink to="/calculo" className="btn btn--navy btn--lg">
               Abrir el simulador <ArrowRight />
             </TransitionLink>
+          </div>
+        </section>
+
+
+        <section id="sobre-mi" className="cobertura">
+          <div className="cobertura__mapa">
+            <MapaCobertura />
+          </div>
+          <div className="cobertura__texto">
+            <h2 className="display h2">Donde estés, te puedo asesorar</h2>
+            <div className="perfil">
+              {SITE.foto ? (
+                <SkeletonImage className="perfil__foto" src={SITE.foto} alt={SITE.nombre} width={112} height={112} />
+              ) : (
+                <span className="perfil__foto perfil__foto--iniciales" aria-hidden="true">
+                  {SITE.nombre.split(' ').map((p) => p[0]).slice(0, 2).join('')}
+                </span>
+              )}
+              <p className="body-lg">
+                Soy {SITE.nombre}, asesor de préstamos para personal de las Fuerzas Armadas y de Seguridad. Hace{' '}
+                {SITE.aniosExperiencia} años acompaño a activos y retirados de todo el país.
+              </p>
+            </div>
+            <p className="body-lg cobertura__muted">
+              Las consultas y gestiones se hacen a distancia por WhatsApp, desde cualquier punto del país. En Entre
+              Ríos y zonas cercanas también atiendo en persona. Te explico las condiciones con claridad, reviso tu
+              recibo con vos y te acompaño hasta que el préstamo está acreditado.
+            </p>
+            <div>
+              <a href={WA_INFO} className="btn btn--white" target="_blank" rel="noopener noreferrer">
+                <Chat /> Hablar con Diego
+              </a>
+            </div>
           </div>
         </section>
 
@@ -139,7 +172,7 @@ export function HomePage() {
           <div className="stack">
             <h2 className="display h2">Preguntas frecuentes</h2>
             <p className="muted-lg">
-              ¿Te queda alguna duda? <Link to="/#sobre-mi">Escribinos</Link> y te la respondemos.
+              Si no encontrás lo que buscás, <a href={WA_INFO} target="_blank" rel="noopener noreferrer">escribime por WhatsApp</a>.
             </p>
           </div>
           <div className="faq">
@@ -167,29 +200,6 @@ export function HomePage() {
                 </div>
               )
             })}
-          </div>
-        </section>
-
-        <section id="sobre-mi" className="section section--white about">
-          <div className="about__photo">
-            {/* Reemplazar por <SkeletonImage src="/diego.jpg" alt="Diego [Apellido]" /> */}
-            <span>Foto de Diego</span>
-          </div>
-          <div className="stack about__text">
-            <h2 className="display h2">Sobre mí</h2>
-            <p className="body-lg">
-              Soy {SITE.nombre}, asesor de préstamos para personal de las Fuerzas Armadas y de Seguridad. Hace{' '}
-              {SITE.aniosExperiencia} años acompaño a activos y retirados de todo el país.
-            </p>
-            <p className="body-lg muted">
-              Te atiendo personalmente: te explico las condiciones con claridad, reviso tu recibo con vos y te
-              acompaño hasta que el préstamo está acreditado.
-            </p>
-            <div className="about__cta">
-              <a href={WA_INFO} className="btn btn--navy" target="_blank" rel="noopener noreferrer">
-                <Chat /> Hablar con Diego
-              </a>
-            </div>
           </div>
         </section>
       </main>

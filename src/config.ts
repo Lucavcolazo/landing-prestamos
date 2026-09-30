@@ -4,6 +4,8 @@ export const SITE = {
   subtitulo: 'Asesor en préstamos',
   whatsapp: '5493435435231',
   aniosExperiencia: '[X]',
+  // Foto de Diego en public/ (ej.: '/diego.jpg'). Mientras sea null se muestran sus iniciales.
+  foto: null as string | null,
 }
 
 // Parámetros del simulador: mismos valores que la configuración del calculador interno

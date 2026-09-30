@@ -18,10 +18,15 @@ function useSeccionActiva(activo: boolean) {
     const update = () => {
       frame = 0
       const limite = window.innerHeight * 0.35
+      // La sección activa es la que empezó más cerca por encima del límite (no depende del orden del menú)
       let actual = 'inicio'
+      let mejor = -Infinity
       for (const id of SECCIONES) {
-        const el = document.getElementById(id)
-        if (el && el.getBoundingClientRect().top <= limite) actual = id
+        const top = document.getElementById(id)?.getBoundingClientRect().top
+        if (top !== undefined && top <= limite && top > mejor) {
+          mejor = top
+          actual = id
+        }
       }
       setSeccion(actual)
     }
