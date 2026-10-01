@@ -11,6 +11,8 @@ export const SITE = {
 // Parámetros del simulador: mismos valores que la configuración del calculador interno
 export const CALC = {
   tnaPct: 45,
+  // CFT informado por la entidad; varía levemente según cada caso, por eso se muestra como aproximado
+  cftPct: 58.79,
   montoMin: 50_000,
   montoMax: 30_000_000,
   diaCorte: 18,

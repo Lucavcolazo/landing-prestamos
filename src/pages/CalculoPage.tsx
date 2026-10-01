@@ -220,6 +220,10 @@ export function CalculoPage() {
                 <strong key={listo ? Math.round(sim.cuotaTotal) : 0} className="num-pop">{listo ? money(sim.cuotaTotal) : dash}</strong>
               </div>
               <div className="row"><span>Tasa (TNA)</span><strong>{CALC.tnaPct}%</strong></div>
+              <div className="row row--cft">
+                <span>CFT aprox.</span>
+                <strong>{CALC.cftPct.toLocaleString('es-AR')}%</strong>
+              </div>
             </div>
 
             <div className="result__send">
