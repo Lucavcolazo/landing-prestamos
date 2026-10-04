@@ -1,7 +1,8 @@
-import { DATA_FISCAL, REDES, SITE, SMSV } from '@/config'
+import { DATA_FISCAL, SITE, SMSV } from '@/config'
 import { NAV_LINKS } from '@/lib/nav'
 import { WA_INFO } from '@/lib/whatsapp'
 import { WhatsApp } from './Icons'
+import { Canales } from './Canales'
 import { TransitionLink } from './TransitionLink'
 
 export function Footer() {
@@ -36,16 +37,7 @@ export function Footer() {
           <span>
             Representante de la {SMSV.nombre} ({SMSV.sigla}) en {SITE.ciudad}, {SITE.provincia}
           </span>
-          <span>
-            WhatsApp <a href={WA_INFO} target="_blank" rel="noopener noreferrer">{SITE.telefono}</a>
-            {' · '}
-            <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
-          </span>
-          <span>
-            <a href={REDES.instagram} target="_blank" rel="noopener noreferrer me">Instagram</a>
-            {' · '}
-            <a href={REDES.facebook} target="_blank" rel="noopener noreferrer me">Facebook</a>
-          </span>
+          <Canales />
           <span>
             {SITE.nombreFiscal} · <span className="nowrap">CUIT {SITE.cuit}</span> · {SITE.condicionFiscal}
           </span>

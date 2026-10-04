@@ -8,7 +8,7 @@ import { Timeline } from '@/components/Timeline'
 import { MapaCobertura } from '@/components/MapaCobertura'
 import { AvisoSeguridad } from '@/components/AvisoSeguridad'
 import { ArrowRight, WhatsApp, Chevron } from '@/components/Icons'
-import { FUERZAS, SITE, SMSV } from '@/config'
+import { FUERZAS, SITE, SMSV, ZONAS } from '@/config'
 import { WA_INFO } from '@/lib/whatsapp'
 import { stagger, useReveal } from '@/lib/useReveal'
 import { usePageMeta } from '@/lib/usePageMeta'
@@ -19,6 +19,9 @@ const PASOS = [
   { titulo: 'Presentá tu recibo', texto: 'Con tu último recibo de haberes vemos cuánto tenés disponible para la cuota.' },
   { titulo: 'Evaluación y acreditación', texto: 'La entidad evalúa la solicitud y, una vez aprobada, coordinamos los pasos finales.' },
 ]
+
+/** "a, b y c" */
+const listar = (items: string[]) => `${items.slice(0, -1).join(', ')} y ${items.at(-1)}`
 
 const PREGUNTAS = [
   {
@@ -36,6 +39,14 @@ const PREGUNTAS = [
   {
     q: '¿Cuánto puedo pedir?',
     a: 'Depende de cuánto tengas disponible en tu recibo de haberes para la cuota. Con tu recibo te decimos el monto exacto. El máximo es de $30.000.000.',
+  },
+  {
+    q: '¿Atienden en mi ciudad?',
+    a: `Sí. Atendemos por WhatsApp en todo el país. Diego está en ${SITE.ciudad} y viaja periódicamente a otras ciudades de Entre Ríos y Santa Fe, como ${listar(ZONAS.filter((z) => z !== SITE.ciudad))}. Si preferís reunirte en persona, consultá cuándo pasa por tu ciudad.`,
+  },
+  {
+    q: '¿Qué es la Sociedad Militar Seguro de Vida (SMSV)?',
+    a: 'Es una mutual creada en 1901 para mejorar la calidad de vida del personal de las Fuerzas Armadas y de Seguridad y de sus familias. Diego Ojeda es su representante en Paraná, Entre Ríos.',
   },
   {
     q: '¿Me van a pedir contraseñas o claves?',
@@ -61,10 +72,10 @@ export function HomePage() {
           <div className="hero__overlay" />
           <div className="hero__content">
             <h1 className="display hero__title enter" style={stagger(0, 120)}>
-              Préstamos para personal de las Fuerzas Armadas y de Seguridad
+              Préstamos para personal de las Fuerzas Armadas y de Seguridad Nacionales
             </h1>
             <p className="hero__lead enter" style={stagger(1, 120)}>
-              Para activos y retirados de todo el país. La cuota se descuenta directamente de tu recibo de haberes.
+              En actividad o retirados de todo el país. La cuota se descuenta de tu recibo de haberes.
             </p>
             <div className="hero__actions enter" style={stagger(2, 120)}>
               <TransitionLink to="/calculo" className="btn btn--white">
@@ -79,10 +90,6 @@ export function HomePage() {
             <div>
               <dt className="display">Hasta 72 cuotas</dt>
               <dd>Fijas y en pesos</dd>
-            </div>
-            <div>
-              <dt className="display">Hasta $30.000.000</dt>
-              <dd>Según tu disponible de haberes</dd>
             </div>
             <div>
               <dt className="display">Activos y retirados</dt>
@@ -109,6 +116,7 @@ export function HomePage() {
             <ul className="req-list">
               <li><span className="display">1</span>Tu último recibo de haberes</li>
               <li><span className="display">2</span>DNI</li>
+              <li><span className="display">3</span>Certificado de haberes (según fuerza / situación de revista)</li>
             </ul>
             <p className="muted">
               La cuota no puede superar lo que tenés disponible en tu recibo de haberes*

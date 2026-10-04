@@ -10,9 +10,9 @@ export interface PageMeta {
 
 export const PAGES = {
   '/': {
-    title: 'Préstamos Militares',
+    title: 'Préstamos Militares Entre Ríos',
     description:
-      'Préstamos para personal en actividad y retirado de las Fuerzas Armadas y de Seguridad de todo el país. Simulá tu cuota y consultá por WhatsApp.',
+      'Préstamos para personal activo y retirado de las Fuerzas Armadas y de Seguridad en Entre Ríos, a través de la Sociedad Militar Seguro de Vida (SMSV). Simulá tu cuota y consultá por WhatsApp.',
   },
   '/sobre-mi': {
     title: 'Diego Ojeda · Representante de SMSV en Paraná, Entre Ríos',

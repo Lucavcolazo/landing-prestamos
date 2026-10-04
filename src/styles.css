@@ -270,7 +270,7 @@ a:hover { color: var(--ink); }
 .hero__facts {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   margin: 0 var(--pad-x);
   border-top: 1px solid rgba(255, 255, 255, 0.28);
 }
@@ -563,6 +563,22 @@ a:hover { color: var(--ink); }
 .site-footer__contacto strong { color: var(--white); font-size: 19px; }
 .site-footer__contacto a, .site-footer__legal a { color: var(--white); text-decoration-color: rgba(116, 172, 223, 0.7); text-underline-offset: 4px; }
 .site-footer__contacto a:hover, .site-footer__legal a:hover { color: var(--white); text-decoration-color: var(--celeste); }
+.canales { display: flex; flex-direction: column; padding: 6px 0; }
+.canales a {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 40px;
+  font-weight: 600;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+.canales a:hover { text-decoration: underline; text-decoration-color: var(--celeste); }
+.canales svg { flex: none; color: var(--celeste); }
+.canales--claro { gap: 4px; padding: 0; }
+.canales--claro a { min-height: 44px; color: var(--ink); font-size: 20px; }
+.canales--claro a:hover { color: var(--ink); text-decoration-color: var(--link); }
+.canales--claro svg { width: 24px; height: 24px; color: var(--link); }
 .site-footer__fiscal { flex: none; display: block; padding: 4px; background: var(--white); border-radius: 6px; }
 .site-footer__fiscal img { width: 66px; height: auto; }
 .site-footer__legal {
@@ -843,10 +859,6 @@ a:hover { color: var(--ink); }
 .section__head--flush { margin-bottom: 0; gap: 20px; }
 .link-ext { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: 20px; font-weight: 700; }
 
-.datos { display: grid; grid-template-columns: repeat(2, auto); gap: 16px 48px; }
-.datos dt { font-size: 16px; font-weight: 700; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.06em; }
-.datos dd { font-size: 20px; font-weight: 600; overflow-wrap: anywhere; }
-@media (max-width: 900px) { .datos { grid-template-columns: 1fr; } }
 
 .legal { display: flex; flex-direction: column; gap: 16px; }
 .legal > * { max-width: 760px; }

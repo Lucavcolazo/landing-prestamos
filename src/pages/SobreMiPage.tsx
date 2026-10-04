@@ -2,8 +2,9 @@ import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { SkeletonImage } from '@/components/SkeletonImage'
 import { AvisoSeguridad } from '@/components/AvisoSeguridad'
+import { Canales } from '@/components/Canales'
 import { External, WhatsApp } from '@/components/Icons'
-import { REDES, SITE, SMSV } from '@/config'
+import { SITE, SMSV } from '@/config'
 import { WA_INFO } from '@/lib/whatsapp'
 import { usePageMeta } from '@/lib/usePageMeta'
 import { stagger } from '@/lib/useReveal'
@@ -95,34 +96,10 @@ export function SobreMiPage() {
         <section className="band">
           <div className="stack">
             <h2 className="display h2">Contacto</h2>
-            <dl className="datos">
-              <div>
-                <dt>WhatsApp</dt>
-                <dd>
-                  <a href={WA_INFO} target="_blank" rel="noopener noreferrer">{SITE.telefono}</a>
-                </dd>
-              </div>
-              <div>
-                <dt>Email</dt>
-                <dd>
-                  <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
-                </dd>
-              </div>
-              <div>
-                <dt>Redes</dt>
-                <dd>
-                  <a href={REDES.instagram} target="_blank" rel="noopener noreferrer me">Instagram</a>
-                  {' · '}
-                  <a href={REDES.facebook} target="_blank" rel="noopener noreferrer me">Facebook</a>
-                </dd>
-              </div>
-              <div>
-                <dt>Zona</dt>
-                <dd>
-                  {SITE.ciudad}, {SITE.provincia}. Atención a todo el país.
-                </dd>
-              </div>
-            </dl>
+            <Canales className="canales--claro" />
+            <p className="muted">
+              {SITE.ciudad}, {SITE.provincia}. Atención por WhatsApp en todo el país.
+            </p>
           </div>
           <div className="band__cta">
             <a href={WA_INFO} className="btn btn--navy btn--lg" target="_blank" rel="noopener noreferrer">

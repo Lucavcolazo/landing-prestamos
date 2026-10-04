@@ -15,6 +15,14 @@ export const SITE = {
   foto: '/diego.jpg' as string | null,
 }
 
+// Ciudades por las que Diego viaja periódicamente: se nombran en la pregunta "¿Atienden en mi
+// ciudad?" y son las mismas que `areaServed` en index.html.
+export const ZONAS = [
+  'Paraná', 'Santa Fe', 'Concordia', 'Gualeguaychú', 'Concepción del Uruguay', 'Gualeguay', 'Villaguay',
+  'Chajarí', 'Victoria', 'La Paz', 'Crespo', 'Colón', 'Federal', 'Federación', 'Nogoyá',
+  'Diamante', 'Rosario del Tala', 'San Salvador', 'San José de Feliciano',
+]
+
 // Mutual de la que Diego es representante. Sin logo: solo nombre y enlaces oficiales.
 export const SMSV = {
   nombre: 'Sociedad Militar Seguro de Vida',
@@ -27,7 +35,9 @@ export const SMSV = {
 // Redes de Diego (si cambia el usuario de Instagram, actualizar acá y en index.html)
 export const REDES = {
   instagram: 'https://www.instagram.com/dojeda.smsv/',
+  instagramUsuario: '@dojeda.smsv',
   facebook: 'https://www.facebook.com/profile.php?id=61586671000489',
+  facebookNombre: 'Diego Ojeda - Representante SMSV',
 }
 
 // Formulario 960 / Data Fiscal de ARCA (el QR solo responde por http)
@@ -57,4 +67,6 @@ export const FUERZAS = [
   { nombre: 'Policía Federal', escudo: '/escudos/policia-federal.jpg' },
   { nombre: 'Policía de Seguridad Aeroportuaria', escudo: '/escudos/psa.jpg' },
   { nombre: 'Servicio Penitenciario Federal', escudo: '/escudos/servicio-penitenciario.jpg' },
+  { nombre: 'Administración Nacional de Aviación Civil (ANAC)', escudo: '/escudos/anac.jpg' },
+  { nombre: 'Empresa Argentina de Navegación Aérea (EANA)', escudo: '/escudos/eana.jpg' },
 ]

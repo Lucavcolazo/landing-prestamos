@@ -206,7 +206,7 @@ export function CalculoPage() {
 
             <div className="result__send">
               <a href={waLink(mensaje)} className="btn btn--white btn--lg btn--block" target="_blank" rel="noopener noreferrer">
-                <WhatsApp size={24} /> Enviar simulación por WhatsApp
+                <WhatsApp size={24} /> Solicitar
               </a>
               <span className="result__note">
                 Se abre WhatsApp con el resumen listo. No se envía nada hasta que vos lo confirmes.
