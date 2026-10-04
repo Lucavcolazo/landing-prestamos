@@ -24,6 +24,12 @@ export const SMSV = {
   representantes: 'https://www.smsv.com.ar/representantes/',
 }
 
+// Redes de Diego (si cambia el usuario de Instagram, actualizar acá y en index.html)
+export const REDES = {
+  instagram: 'https://www.instagram.com/dojeda.smsv/',
+  facebook: 'https://www.facebook.com/profile.php?id=61586671000489',
+}
+
 // Formulario 960 / Data Fiscal de ARCA (el QR solo responde por http)
 export const DATA_FISCAL = {
   href: 'http://qr.afip.gob.ar/?qr=62roXFvyyioXasq3Ozg1vw,,',

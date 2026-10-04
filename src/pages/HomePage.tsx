@@ -119,7 +119,7 @@ export function HomePage() {
         <section id="como-funciona" className="howto" data-pin>
           <div className="howto__sticky section">
             <div className="section__head">
-              <h2 className="display h2">Cómo funciona</h2>
+              <h2 className="display h2">Pasos a seguir</h2>
               <p className="lead">
                 Cuatro pasos. Te acompañamos en cada uno.
               </p>
@@ -158,15 +158,15 @@ export function HomePage() {
                 </span>
               )}
               <p className="body-lg">
-                Soy {SITE.nombre}, representante de la {SMSV.nombre} ({SMSV.sigla}) en {SITE.ciudad},{' '}
-                {SITE.provincia}. Hace {SITE.aniosExperiencia} años acompaño a activos y retirados de las Fuerzas
-                Armadas y de Seguridad de todo el país.
+                Soy {SITE.nombre}, representante de la {SMSV.nombre} ({SMSV.sigla}). Hace{' '}
+                {SITE.aniosExperiencia} años asesoro a personal en actividad y retirado de las Fuerzas Armadas y de
+                Seguridad Nacionales.
               </p>
             </div>
             <p className="body-lg cobertura__muted">
-              Las consultas y gestiones se hacen a distancia por WhatsApp, desde cualquier punto del país. En Entre
-              Ríos y zonas cercanas también atiendo en persona. Te explico las condiciones con claridad, reviso tu
-              recibo con vos y te acompaño hasta que el préstamo está acreditado.
+              Atención presencial en {SITE.provincia} y zonas cercanas, y por WhatsApp desde cualquier lugar del país.
+              Analizamos juntos tu situación y buscamos la mejor solución, con condiciones claras desde el primer
+              momento.
             </p>
             <div className="cobertura__acciones">
               <a href={WA_INFO} className="btn btn--white" target="_blank" rel="noopener noreferrer">

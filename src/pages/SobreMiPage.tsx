@@ -3,7 +3,7 @@ import { Footer } from '@/components/Footer'
 import { SkeletonImage } from '@/components/SkeletonImage'
 import { AvisoSeguridad } from '@/components/AvisoSeguridad'
 import { External, WhatsApp } from '@/components/Icons'
-import { SITE, SMSV } from '@/config'
+import { REDES, SITE, SMSV } from '@/config'
 import { WA_INFO } from '@/lib/whatsapp'
 import { usePageMeta } from '@/lib/usePageMeta'
 import { stagger } from '@/lib/useReveal'
@@ -37,13 +37,17 @@ export function SobreMiPage() {
           <div className="stack">
             <h2 className="display h2">Quién soy</h2>
             <p className="body-lg">
+              Soy {SITE.nombre}, representante de la {SMSV.nombre} ({SMSV.sigla}).
+            </p>
+            <p className="body-lg">
               Hace {SITE.aniosExperiencia} años asesoro a personal en actividad y retirado de las Fuerzas Armadas y de
-              Seguridad en sus préstamos. Te explico las condiciones con claridad, reviso tu recibo de haberes con vos y
-              te acompaño hasta que el préstamo está acreditado.
+              Seguridad Nacionales. Mi formación como Experto Universitario en Mercado de Capitales (UTN) me permite
+              analizar cada opción con criterio y ayudarte a elegir la que realmente te conviene.
             </p>
             <p className="body-lg muted">
-              Las consultas y gestiones se hacen a distancia por WhatsApp, desde cualquier punto del país. En{' '}
-              {SITE.provincia} y zonas cercanas también atiendo en persona.
+              Atención presencial en {SITE.provincia} y zonas cercanas, y por WhatsApp desde cualquier lugar del país.
+              Analizamos juntos tu situación y buscamos la mejor solución, con condiciones claras desde el primer
+              momento.
             </p>
           </div>
 
@@ -102,6 +106,14 @@ export function SobreMiPage() {
                 <dt>Email</dt>
                 <dd>
                   <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+                </dd>
+              </div>
+              <div>
+                <dt>Redes</dt>
+                <dd>
+                  <a href={REDES.instagram} target="_blank" rel="noopener noreferrer me">Instagram</a>
+                  {' · '}
+                  <a href={REDES.facebook} target="_blank" rel="noopener noreferrer me">Facebook</a>
                 </dd>
               </div>
               <div>

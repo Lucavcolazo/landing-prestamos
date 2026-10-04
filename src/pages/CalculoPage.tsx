@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { TransitionLink } from '@/components/TransitionLink'
-import { ArrowLeft, WhatsApp, Chevron } from '@/components/Icons'
+import { ArrowLeft, WhatsApp } from '@/components/Icons'
 import { CALC } from '@/config'
 import { simular } from '@/lib/finance'
 import { formatMontoInput, money, parseMonto } from '@/lib/format'
@@ -15,16 +15,13 @@ const MESES = [
   'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre',
 ]
 
-const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1)
-
 export function CalculoPage() {
   usePageMeta('/calculo')
   const [montoTxt, setMontoTxt] = useState('')
   const [plazo, setPlazo] = useState(48)
-  const [dia, setDia] = useState('')
-  const [mes, setMes] = useState('')
   const [anio, setAnio] = useState('')
   const [fuerza, setFuerza] = useState('')
+  const [ciudad, setCiudad] = useState('')
   const [nombre, setNombre] = useState('')
 
   const hoy = useMemo(() => new Date(), [])
@@ -63,7 +60,8 @@ export function CalculoPage() {
     'Hola Diego, hice una simulación en la web:',
     nombre.trim() && `- Nombre: ${nombre.trim()}`,
     fuerza.trim() && `- Fuerza: ${fuerza.trim()}`,
-    fechaOk && (dia && mes ? `- Fecha de nacimiento: ${dia}/${mes}/${anio}` : `- Año de nacimiento: ${anio}`),
+    ciudad.trim() && `- Ciudad: ${ciudad.trim()}`,
+    fechaOk && `- Año de nacimiento: ${anio}`,
     `- Monto: ${montoOk ? money(monto) : '-'}`,
     `- Plazo: ${plazo} cuotas`,
     `- Primera cuota: ${listo ? money(sim.cuotaTotal) : '-'}`,
@@ -122,53 +120,18 @@ export function CalculoPage() {
               </div>
             </fieldset>
 
-            <fieldset className="field-group">
-              <legend className="lbl">3. Fecha de nacimiento</legend>
-              <div className="fecha">
-                <div className="fecha__col">
-                  <label className="sublbl" htmlFor="dia">Día</label>
-                  <input
-                    id="dia"
-                    className="field"
-                    inputMode="numeric"
-                    autoComplete="bday-day"
-                    placeholder="DD"
-                    value={dia}
-                    onChange={(e) => setDia(e.target.value.replace(/\D/g, '').slice(0, 2))}
-                  />
-                </div>
-                <div className="fecha__col">
-                  <label className="sublbl" htmlFor="mes">Mes</label>
-                  <div className="select">
-                    <select
-                      id="mes"
-                      className="field"
-                      autoComplete="bday-month"
-                      value={mes}
-                      onChange={(e) => setMes(e.target.value)}
-                    >
-                      <option value="">Elegí el mes</option>
-                      {MESES.map((m, i) => (
-                        <option key={m} value={String(i + 1)}>{cap(m)}</option>
-                      ))}
-                    </select>
-                    <Chevron />
-                  </div>
-                </div>
-                <div className="fecha__col">
-                  <label className="sublbl" htmlFor="anio">Año</label>
-                  <input
-                    id="anio"
-                    className="field"
-                    inputMode="numeric"
-                    autoComplete="bday-year"
-                    placeholder="AAAA"
-                    value={anio}
-                    onChange={(e) => setAnio(e.target.value.replace(/\D/g, '').slice(0, 4))}
-                  />
-                </div>
-              </div>
-            </fieldset>
+            <div className="field-group">
+              <label className="lbl" htmlFor="anio">3. Año de nacimiento</label>
+              <input
+                id="anio"
+                className="field field--anio"
+                inputMode="numeric"
+                autoComplete="bday-year"
+                placeholder="AAAA"
+                value={anio}
+                onChange={(e) => setAnio(e.target.value.replace(/\D/g, '').slice(0, 4))}
+              />
+            </div>
 
             <div className="field-group field-group--sep">
               <label className="lbl" htmlFor="fuerza">Fuerza a la que pertenecés</label>
@@ -180,6 +143,19 @@ export function CalculoPage() {
                 value={fuerza}
                 maxLength={60}
                 onChange={(e) => setFuerza(e.target.value)}
+              />
+            </div>
+
+            <div className="field-group">
+              <label className="lbl" htmlFor="ciudad">Ciudad</label>
+              <input
+                id="ciudad"
+                className="field"
+                autoComplete="address-level2"
+                placeholder="Ej.: Paraná"
+                value={ciudad}
+                maxLength={60}
+                onChange={(e) => setCiudad(e.target.value)}
               />
             </div>
 
@@ -205,7 +181,7 @@ export function CalculoPage() {
               <span key={listo ? Math.round(sim.enMano) : 0} className="display result__big num-pop">{listo ? money(sim.enMano) : dash}</span>
               {!listo && (
                 <span className="result__sub">
-                  {montoOk ? 'Completá tu fecha de nacimiento para ver el resultado' : 'Ingresá el monto para ver el resultado'}
+                  {montoOk ? 'Completá tu año de nacimiento para ver el resultado' : 'Ingresá el monto para ver el resultado'}
                 </span>
               )}
             </div>

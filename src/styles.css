@@ -292,7 +292,7 @@ a:hover { color: var(--ink); }
 .section--white { background: var(--white); }
 .section__head { display: flex; flex-direction: column; gap: 16px; max-width: 760px; margin-bottom: 64px; }
 
-/* "Cómo funciona" fijado: la sección queda en pantalla mientras se completan los pasos.
+/* "Pasos a seguir" fijado: la sección queda en pantalla mientras se completan los pasos.
    Misma media query que PIN_QUERY en Timeline.tsx. */
 .howto { background: var(--ivory); }
 @media (min-width: 1101px) and (min-height: 640px) and (prefers-reduced-motion: no-preference) {
@@ -608,7 +608,6 @@ a:hover { color: var(--ink); }
 .field-group > legend { padding: 0; margin-bottom: 10px; }
 .field-group--sep { padding-top: 28px; border-top: 1px solid var(--line-3); }
 .lbl { font-size: 18px; font-weight: 700; color: var(--ink); }
-.sublbl { font-size: 16px; font-weight: 600; color: var(--ink-3); }
 .opt { font-weight: 400; color: var(--ink-3); }
 
 .field {
@@ -669,12 +668,7 @@ a:hover { color: var(--ink); }
 .seg:active { transform: scale(0.96); }
 .seg.is-on { background: var(--navy); border-color: var(--navy); color: var(--white); }
 
-.fecha { display: grid; grid-template-columns: 100px minmax(0, 1fr) 130px; gap: 10px; }
-.fecha__col { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
-@media (max-width: 560px) { .fecha { grid-template-columns: 1fr 1fr; } .fecha__col:nth-child(2) { grid-column: 1 / -1; grid-row: 1; } }
-.select { position: relative; }
-.select select { appearance: none; -webkit-appearance: none; padding-right: 48px; cursor: pointer; }
-.select svg { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); pointer-events: none; color: var(--ink); }
+.field--anio { max-width: 180px; }
 
 .result {
   position: sticky;
@@ -849,7 +843,7 @@ a:hover { color: var(--ink); }
 .section__head--flush { margin-bottom: 0; gap: 20px; }
 .link-ext { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: 20px; font-weight: 700; }
 
-.datos { display: grid; grid-template-columns: repeat(3, auto); gap: 16px 48px; }
+.datos { display: grid; grid-template-columns: repeat(2, auto); gap: 16px 48px; }
 .datos dt { font-size: 16px; font-weight: 700; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.06em; }
 .datos dd { font-size: 20px; font-weight: 600; overflow-wrap: anywhere; }
 @media (max-width: 900px) { .datos { grid-template-columns: 1fr; } }
