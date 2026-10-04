@@ -1,5 +1,6 @@
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
+import { EmailLink } from '@/components/EmailLink'
 import { SITE, SMSV } from '@/config'
 import { usePageMeta } from '@/lib/usePageMeta'
 
@@ -21,7 +22,7 @@ export function PrivacidadPage() {
           <h2 className="display h3">Responsable</h2>
           <p>
             {SITE.nombreFiscal}, CUIT {SITE.cuit}, de {SITE.ciudad}, {SITE.provincia}. Contacto:{' '}
-            <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+            <EmailLink />.
           </p>
 
           <h2 className="display h3">Qué datos usa este sitio</h2>
@@ -45,7 +46,7 @@ export function PrivacidadPage() {
           <h2 className="display h3">Tus derechos</h2>
           <p>
             Podés pedir en cualquier momento acceder a tus datos, corregirlos o que se eliminen, escribiendo a{' '}
-            <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+            <EmailLink />.
           </p>
           <p className="muted">
             El titular de los datos personales tiene la facultad de ejercer el derecho de acceso a los mismos en forma

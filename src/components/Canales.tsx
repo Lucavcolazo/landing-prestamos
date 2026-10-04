@@ -1,5 +1,6 @@
 import { REDES, SITE } from '@/config'
 import { WA_INFO } from '@/lib/whatsapp'
+import { EmailLink } from './EmailLink'
 import { Facebook, Instagram, Mail, WhatsApp } from './Icons'
 
 /** Medios de contacto con el ícono de cada app: WhatsApp, mail, Facebook e Instagram. */
@@ -12,9 +13,9 @@ export function Canales({ className = '' }: { className?: string }) {
         </a>
       </li>
       <li>
-        <a href={`mailto:${SITE.email}`}>
+        <EmailLink>
           <Mail size={20} /> {SITE.email}
-        </a>
+        </EmailLink>
       </li>
       <li>
         <a href={REDES.facebook} target="_blank" rel="noopener noreferrer me">
