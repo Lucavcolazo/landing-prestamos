@@ -8,6 +8,7 @@ import { simular } from '@/lib/finance'
 import { formatMontoInput, money, parseMonto } from '@/lib/format'
 import { waLink } from '@/lib/whatsapp'
 import { stagger } from '@/lib/useReveal'
+import { usePageMeta } from '@/lib/usePageMeta'
 
 const MESES = [
   'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
@@ -17,6 +18,7 @@ const MESES = [
 const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1)
 
 export function CalculoPage() {
+  usePageMeta('/calculo')
   const [montoTxt, setMontoTxt] = useState('')
   const [plazo, setPlazo] = useState(48)
   const [dia, setDia] = useState('')

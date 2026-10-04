@@ -2,6 +2,8 @@ import { lazy, Suspense, useEffect, useLayoutEffect, useRef } from 'react'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import { HomePage } from './pages/HomePage'
 import { CalculoSkeleton } from './pages/CalculoSkeleton'
+import { SobreMiPage } from './pages/SobreMiPage'
+import { PrivacidadPage } from './pages/PrivacidadPage'
 
 const CalculoPage = lazy(() => import('./pages/CalculoPage').then((m) => ({ default: m.CalculoPage })))
 
@@ -43,6 +45,8 @@ export function App() {
             </Suspense>
           }
         />
+        <Route path="/sobre-mi" element={<SobreMiPage />} />
+        <Route path="/privacidad" element={<PrivacidadPage />} />
         <Route path="*" element={<HomePage />} />
       </Routes>
     </>

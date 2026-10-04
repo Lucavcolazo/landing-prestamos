@@ -1,11 +1,33 @@
 // Datos del sitio. Completar los que están entre corchetes.
 export const SITE = {
   nombre: 'Diego Ojeda',
+  nombreFiscal: 'Ojeda Diego José',
   subtitulo: 'Asesor en préstamos',
   whatsapp: '5493435435231',
+  telefono: '0343 543-5231',
+  email: 'diego@diegoojeda.com.ar',
+  ciudad: 'Paraná',
+  provincia: 'Entre Ríos',
+  cuit: '20-31458456-3',
+  condicionFiscal: 'Responsable Monotributo',
   aniosExperiencia: '18',
   // Foto de Diego en public/ (ej.: '/diego.jpg'). Mientras sea null se muestran sus iniciales.
   foto: '/diego.jpg' as string | null,
+}
+
+// Mutual de la que Diego es representante. Sin logo: solo nombre y enlaces oficiales.
+export const SMSV = {
+  nombre: 'Sociedad Militar Seguro de Vida',
+  sigla: 'SMSV',
+  web: 'https://www.smsv.com.ar/',
+  // Listado oficial donde figura "PARANÁ: Ojeda, Diego"
+  representantes: 'https://www.smsv.com.ar/representantes/',
+}
+
+// Formulario 960 / Data Fiscal de ARCA (el QR solo responde por http)
+export const DATA_FISCAL = {
+  href: 'http://qr.afip.gob.ar/?qr=62roXFvyyioXasq3Ozg1vw,,',
+  img: 'https://www.afip.gob.ar/images/f960/DATAWEB.jpg',
 }
 
 // Parámetros del simulador: mismos valores que la configuración del calculador interno

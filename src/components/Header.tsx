@@ -85,7 +85,7 @@ export function Header({ overHero = false }: { overHero?: boolean }) {
   }, [open])
 
   const solid = !overHero || scrolled || open
-  const esActual = (l: (typeof LINKS)[number]) => (l.section ? enHome && seccion === l.section : pathname === l.to)
+  const esActual = (l: (typeof LINKS)[number]) => (enHome && l.section ? seccion === l.section : pathname === l.to)
 
   const cta =
     pathname === '/calculo' ? (

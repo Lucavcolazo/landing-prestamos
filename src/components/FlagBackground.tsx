@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { prefersReducedMotion } from '@/lib/useReveal'
 
 const SLICES = 37
 
@@ -8,15 +9,13 @@ const SLICES = 37
  * reproducir, queda una bandera animada en CSS.
  * Al hacer scroll se difumina para que el contenido se lea mejor. En pantallas chicas solo
  * baja la opacidad (el blur sobre video es costoso en celulares de gama baja).
- * El video se pausa cuando el hero sale de pantalla.
+ * El video arranca y se pausa según esté en pantalla (sin `autoPlay`, para que el HTML
+ * pre-generado sea igual al del navegador).
  */
 export function FlagBackground() {
   const wrapRef = useRef<HTMLDivElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
   const [videoFailed, setVideoFailed] = useState(false)
-  const [reduceMotion] = useState(
-    () => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches,
-  )
 
   // Difuminado con el scroll
   useEffect(() => {
@@ -48,18 +47,18 @@ export function FlagBackground() {
     }
   }, [])
 
-  // Pausar el video fuera de pantalla
+  // Reproducir el video solo mientras está en pantalla
   useEffect(() => {
     const el = wrapRef.current
     const video = videoRef.current
-    if (!el || !video || reduceMotion || !('IntersectionObserver' in window)) return
+    if (!el || !video || prefersReducedMotion() || !('IntersectionObserver' in window)) return
     const obs = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) video.play().catch(() => {})
       else video.pause()
     })
     obs.observe(el)
     return () => obs.disconnect()
-  }, [reduceMotion, videoFailed])
+  }, [videoFailed])
 
   return (
     <div className="flag" ref={wrapRef} aria-hidden="true">
@@ -80,7 +79,6 @@ export function FlagBackground() {
         <video
           ref={videoRef}
           className="flag__video"
-          autoPlay={!reduceMotion}
           muted
           loop
           playsInline

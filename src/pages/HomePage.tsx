@@ -6,10 +6,12 @@ import { SkeletonImage } from '@/components/SkeletonImage'
 import { TransitionLink } from '@/components/TransitionLink'
 import { Timeline } from '@/components/Timeline'
 import { MapaCobertura } from '@/components/MapaCobertura'
+import { AvisoSeguridad } from '@/components/AvisoSeguridad'
 import { ArrowRight, WhatsApp, Chevron } from '@/components/Icons'
-import { FUERZAS, SITE } from '@/config'
+import { FUERZAS, SITE, SMSV } from '@/config'
 import { WA_INFO } from '@/lib/whatsapp'
 import { stagger, useReveal } from '@/lib/useReveal'
+import { usePageMeta } from '@/lib/usePageMeta'
 
 const PASOS = [
   { titulo: 'Simulá tu préstamo', texto: 'Elegí el monto y las cuotas en el simulador y mirá cuánto pagarías por mes.' },
@@ -36,6 +38,10 @@ const PREGUNTAS = [
     a: 'Depende de cuánto tengas disponible en tu recibo de haberes para la cuota. Con tu recibo te decimos el monto exacto. El máximo es de $30.000.000.',
   },
   {
+    q: '¿Me van a pedir contraseñas o claves?',
+    a: 'No. Nunca te voy a pedir contraseñas de Mi Argentina, IAF ni home banking, ni códigos que te lleguen por SMS. Los trámites se hacen por los canales oficiales de SMSV.',
+  },
+  {
     q: '¿El resultado del simulador es definitivo?',
     a: 'No, es una estimación de referencia. Antes de firmar te informamos por escrito la cuota, la TNA, la TEA y el CFT.',
   },
@@ -44,6 +50,7 @@ const PREGUNTAS = [
 export function HomePage() {
   const [abierta, setAbierta] = useState(0)
   useReveal()
+  usePageMeta('/')
 
   return (
     <>
@@ -151,8 +158,9 @@ export function HomePage() {
                 </span>
               )}
               <p className="body-lg">
-                Soy {SITE.nombre}, asesor de préstamos para personal de las Fuerzas Armadas y de Seguridad. Hace{' '}
-                {SITE.aniosExperiencia} años acompaño a activos y retirados de todo el país.
+                Soy {SITE.nombre}, representante de la {SMSV.nombre} ({SMSV.sigla}) en {SITE.ciudad},{' '}
+                {SITE.provincia}. Hace {SITE.aniosExperiencia} años acompaño a activos y retirados de las Fuerzas
+                Armadas y de Seguridad de todo el país.
               </p>
             </div>
             <p className="body-lg cobertura__muted">
@@ -160,12 +168,19 @@ export function HomePage() {
               Ríos y zonas cercanas también atiendo en persona. Te explico las condiciones con claridad, reviso tu
               recibo con vos y te acompaño hasta que el préstamo está acreditado.
             </p>
-            <div>
+            <div className="cobertura__acciones">
               <a href={WA_INFO} className="btn btn--white" target="_blank" rel="noopener noreferrer">
                 <WhatsApp /> Hablar con Diego
               </a>
+              <TransitionLink to="/sobre-mi" className="btn btn--ghost">
+                Conocé más sobre mí <ArrowRight />
+              </TransitionLink>
             </div>
           </div>
+        </section>
+
+        <section className="section section--white section--aviso">
+          <AvisoSeguridad />
         </section>
 
         <section id="preguntas" className="section faq-layout">

@@ -59,3 +59,22 @@ export function Close({ size = 28 }: IconProps) {
     </svg>
   )
 }
+
+export function Shield({ size = 32 }: IconProps) {
+  return (
+    <svg width={size} height={size} strokeWidth={2} {...base}>
+      <path d="M12 3l7 3v5.5c0 4.4-3 8.2-7 9.5-4-1.3-7-5.1-7-9.5V6l7-3z" />
+      <path d="M9 12l2 2 4-4" />
+    </svg>
+  )
+}
+
+export function External({ size = 18 }: IconProps) {
+  return (
+    <svg width={size} height={size} strokeWidth={2.2} {...base}>
+      <path d="M14 5h5v5" />
+      <path d="M19 5l-8 8" />
+      <path d="M17 14v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h4" />
+    </svg>
+  )
+}

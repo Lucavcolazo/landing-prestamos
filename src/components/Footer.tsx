@@ -1,4 +1,4 @@
-import { SITE } from '@/config'
+import { DATA_FISCAL, SITE, SMSV } from '@/config'
 import { NAV_LINKS } from '@/lib/nav'
 import { WA_INFO } from '@/lib/whatsapp'
 import { WhatsApp } from './Icons'
@@ -23,13 +23,41 @@ export function Footer() {
                 <TransitionLink to={l.to}>{l.label}</TransitionLink>
               </li>
             ))}
+            <li>
+              <TransitionLink to="/privacidad">Privacidad</TransitionLink>
+            </li>
           </ul>
         </nav>
       </div>
 
+      <div className="site-footer__datos">
+        <address className="site-footer__contacto">
+          <strong>{SITE.nombre}</strong>
+          <span>
+            Representante de la {SMSV.nombre} ({SMSV.sigla}) en {SITE.ciudad}, {SITE.provincia}
+          </span>
+          <span>
+            WhatsApp <a href={WA_INFO} target="_blank" rel="noopener noreferrer">{SITE.telefono}</a>
+            {' · '}
+            <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+          </span>
+          <span>
+            {SITE.nombreFiscal} · <span className="nowrap">CUIT {SITE.cuit}</span> · {SITE.condicionFiscal}
+          </span>
+        </address>
+
+        <a className="site-footer__fiscal" href={DATA_FISCAL.href} target="_blank" rel="noopener noreferrer">
+          <img src={DATA_FISCAL.img} alt="Data Fiscal de ARCA" width={66} height={90} loading="lazy" />
+        </a>
+      </div>
+
       <p className="site-footer__legal">
-        {SITE.nombre} actúa como promotor y asesor. Los préstamos están sujetos a evaluación crediticia y a las
-        condiciones de la entidad otorgante. Los valores del simulador son de referencia.
+        {SITE.nombre} es representante de la {SMSV.nombre}; podés verificarlo en el{' '}
+        <a href={SMSV.representantes} target="_blank" rel="noopener noreferrer">
+          listado oficial de representantes de {SMSV.sigla}
+        </a>
+        . Los préstamos están sujetos a evaluación crediticia y a las condiciones de la entidad. Los valores del
+        simulador son de referencia. Nunca te voy a pedir contraseñas ni claves de ningún tipo.
       </p>
     </footer>
   )
